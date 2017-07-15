@@ -10,7 +10,7 @@ title: 'Debugged: Thunderbird Hangs when Saving Draft'
 ---
 
 
-Been having an issue lately with Thunderbird hanging, sometimes several times in an hour.  Always it's while I'm writing an email.  Always the latest (or nearly-latest) version of the email is saved in the Drafts folder.  This led me to believe that it had something to do with the process of saving a draft.
+Been having an issue lately with Thunderbird hanging. Sometimes several times in an hour.  Always it's while I'm writing an email.  Always the latest (or nearly-latest) version of the email is saved in the Drafts folder.  This led me to believe that it had something to do with the process of saving a draft.
 
 Following [Mozilla's testing guidelines](https://wiki.mozilla.org/Thunderbird:Testing:Memory_Usage_Problems), first test was using Thunderbird in Safe Mode.  Same problem, so it wasn't the fault of any extensions.  Also excluded Windows Defender from scanning the Thunderbird profile folder, to no avail.
 
@@ -57,3 +57,4 @@ If you wanted to be truly precise about this, and wanted to keep Indexing active
 After a short while, the number of "items indexed" displayed on the main screen dropped to a relatively small number.  As a final test I opened OneNote and searched for a random string - bam, instant response.
 
 ![](/uploads/2017/07/15/Thunderbird_Services3.png)
+
