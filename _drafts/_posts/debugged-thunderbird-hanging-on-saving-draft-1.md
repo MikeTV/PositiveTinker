@@ -1,8 +1,10 @@
 ---
 comments: true
 date: 2017-07-15 15:07
-description: 'Symptom: Thunderbird sometimes hangs when saving an email draft (including
-  auto-save) or sending an email.  Culprit: Windows 10 Indexing Service'
+description: |-
+  Symptom: Thunderbird sometimes hangs when saving an email draft (including auto-save) or sending an email.
+  Culprit: Windows 10 Indexing Service
+  Solutions and side-effects follow.
 layout: post
 title: 'Debugged: Thunderbird Hanging on Saving Draft'
 ---
