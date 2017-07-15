@@ -13,7 +13,7 @@ layout: default
     </h1>
     <p>
     {% if post.description.size > 0 %}
-          {{ post.description | remove: '<p>' | remove: '</p>' | markdownify }}
+          {{ post.description | markdownify | remove: '<p>' | remove: '</p>' }}
       {% else %}
           {{ post.excerpt | remove: '<p>' | remove: '</p>' }}
     {% endif %}
