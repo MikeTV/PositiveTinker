@@ -5,12 +5,13 @@ layout: default
 <article class="post">
   
   <h1 class="post-title">{{ page.title }}</h1>
-  <span class="post-date">Last Updated {{ page.date | date: "%B %Y" }}</span>
+  <span class="post-date">Last Updated {{ page.date | date: "%B %Y" }}
       {% if page.tags %} · 
         {% for tag in page.tags %}
           <a href="{{ site.baseurl }}/tags/#{{ tag | slugify }}" class="post-tag">{{ tag }}</a>
         {% endfor %}
       {% endif %}
+  </span>
   {{ content }}
 </article>
 
