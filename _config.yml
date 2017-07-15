@@ -8,7 +8,7 @@ permalink:        /:title/
 # Setup
 title:            Positive Tinker
 tagline:          'If at first you don't succeed, redefine success.'
-#description:      'TODO: meta-description'
+description:      ''
 url:              https://positivetinker.com
 
 author:
