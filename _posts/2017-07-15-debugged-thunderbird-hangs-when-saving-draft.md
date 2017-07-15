@@ -6,7 +6,9 @@ description: |-
   Culprit: Windows 10 Indexing Service
   Solutions and side-effects follow.
 layout: post
-title: Thunderbird Hangs When Saving Draft
+tags:
+- debugging
+title: Thunderbird Hangs When Saving
 ---
 
 
