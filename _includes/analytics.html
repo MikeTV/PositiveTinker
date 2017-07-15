@@ -7,4 +7,19 @@
   ga('create', 'UA-52468572-10', 'auto');
   ga('send', 'pageview');
 
+  // Single-page "bounce" reporting fix
+  setTimeout("dwell()", 35e3);
+  function dwell() {
+    ga("send", "event", "timing", "dwell", "35s");
+  }
+  
+  // Session duration record that doesn't affect bounce
+  var startTime = new Date();
+  addEvent(window, "beforeunload", function () {
+    var minutes = Math.round(((new Date()) - startTime)/1000);
+    ga("send", "event", "timing", "beforeunload", String("0000" + minutes).slice(-4),  {
+        useBeacon: !0,
+        nonInteraction: 1
+    })
+  });
 </script>
