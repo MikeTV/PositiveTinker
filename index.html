@@ -12,7 +12,7 @@ layout: default
       </a>
     </h1>
     
-    {% if post.description %}
+    {% if post.description.size > 0 %}
           {{ post.description | markdownify }}
       {% else %}
           {{ post.excerpt }}
