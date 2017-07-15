@@ -329,6 +329,18 @@ a.sidebar-nav-item:focus {
   color: #ddd;
 }
 
+.post-tag {
+  padding: .25rem;
+  background-color: #EEE;
+  font-size: .75rem;
+  border-radius: 4px;
+}
+
+.post-tag:hover {
+  text-decoration: none;
+  background-color: #DDD;
+}
+
 /* Related posts */
 .related {
   padding-top: 2rem;
