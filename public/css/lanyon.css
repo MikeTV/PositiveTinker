@@ -331,14 +331,14 @@ a.sidebar-nav-item:focus {
 
 .post-tag {
   padding: .25rem;
-  background-color: #EEE;
+  background-color: #F5F5F5;
   font-size: .75rem;
   border-radius: 4px;
 }
 
 .post-tag:hover {
   text-decoration: none;
-  background-color: #DDD;
+  background-color: #EEE;
 }
 
 /* Related posts */
