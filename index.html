@@ -11,14 +11,15 @@ layout: default
         {{ post.title }}
       </a>
     </h1>
-    
+    <p>
     {% if post.description.size > 0 %}
           {{ post.description | markdownify }}
       {% else %}
-          {{ post.excerpt }}
+          {{ post.excerpt | remove: '<p>' | remove: '</p>' }}
     {% endif %}
     <a href="{{ post.url }}">&nbsp;&lt;&lt;</a>
-
+    </p>
+    
   </div>
   {% endfor %}
 </div>
