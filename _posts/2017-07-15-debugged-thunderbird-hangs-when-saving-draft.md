@@ -8,7 +8,7 @@ description: |-
 layout: post
 tags:
 - debugging
-title: Thunderbird Hangs When Saving
+title: Thunderbird Hangs When Saving Draft
 ---
 
 
