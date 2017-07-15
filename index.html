@@ -12,9 +12,12 @@ layout: default
       </a>
     </h1>
     
-    
+    {% if post.description %}
+          {{ post.description | markdownify }}
+      {% else %}
+          {{ post.excerpt }}
+    {% endif %}
 
-    {{ post.excerpt }}
   </div>
   {% endfor %}
 </div>
