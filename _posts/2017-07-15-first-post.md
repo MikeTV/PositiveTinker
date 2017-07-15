@@ -6,7 +6,7 @@ description: ''
 ---
 
 
-What makes for a good blog?  For starters,  it needs to have posts.
+What makes for a good blog?  For starters,  it needs to have content.
 
 That seems to be the hardest part, if you're not particularly inclined to sit down and write.  Pretty high barrier to entry, actually.
 
