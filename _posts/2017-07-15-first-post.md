@@ -1,5 +1,5 @@
 ---
-comments: false
+comments: true
 date: 2017-07-15 13:14
 description: ''
 layout: post
