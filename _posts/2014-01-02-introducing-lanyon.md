@@ -3,6 +3,8 @@ layout: post
 title: Introducing Lanyon
 date: '2014-01-02T00:00:00.000+00:00'
 ---
+
+
 Test on domain 3
 
 Lanyon is an unassuming [Jekyll](http://jekyllrb.com) theme that places content first by tucking away navigation in a hidden drawer. It's based on [Poole](http://getpoole.com), the Jekyll butler.
@@ -27,13 +29,13 @@ Poole is the Jekyll Butler, serving as an upstanding and effective foundation fo
 
 In addition to the features of Poole, Lanyon adds the following:
 
-* Toggleable sliding sidebar (built with only CSS) via **☰** link in top corner
+* Toggleable sli<span style="font-size: 1rem;">ding sid</span><span style="font-size: 1rem;">ebar (built with only CSS) via </span>**☰**<span style="font-size: 1rem;"> link in top corner<br></span>
 
 * Sidebar includes support for textual modules and a dynamically generated navigation with active link support
 
-* Two orientations for content and sidebar, default (left sidebar) and [reverse](https://github.com/poole/lanyon#reverse-layout) (right sidebar), available via `<body>` classes
+* Two orientations for content and sidebar, default (left sidebar) and [reverse](https://github.com/poole/lanyon#reverse-layout) (right sidebar), available via `&lt;body&gt;` classes
 
-* [Eight optional color schemes](https://github.com/poole/lanyon#themes), available via `<body>` classes
+* [Eight optional color schemes](https://github.com/poole/lanyon#themes), available `&lt;body&gt;` classes
 
 [Head to the readme](https://github.com/poole/lanyon#readme) to learn more.
 
