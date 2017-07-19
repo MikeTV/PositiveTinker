@@ -19,7 +19,7 @@ Here's an extension method that fits the bill:
 /// <param name="text">Text to wrap</param>
 /// <param name="width">Width in pixels at which to wrap</param>
 /// <param name="font">Font of the control which will display the wrapped text</param>
-/// <returns>Wrapped lines.</returns>
+/// <returns>Multiple lines containint the wrapped text</returns>
 public static IEnumerable<string> WrapStringToPixelWidth(this string text, int width, System.Drawing.Font font)
 {
     if (System.Windows.Forms.TextRenderer.MeasureText(text, font).Width <= width)
@@ -28,7 +28,6 @@ public static IEnumerable<string> WrapStringToPixelWidth(this string text, int w
     }
     else
     {
-
         var tokens = text.Split(null); // null param == "split on whitespace"
 
         string line = "";
@@ -42,14 +41,17 @@ public static IEnumerable<string> WrapStringToPixelWidth(this string text, int w
             }
             else
             {
-                // Line hasn't even started and already over max?  The token must be longer than the max length for a line.  Put the token on its own line.
+                // Line hasn't even started and already over max?
+                // The token must be longer than the max length for a line.
+                // Put the token on its own line.
                 if (line == "")
                 {
                     yield return t;
                 }
                 else
                 {
-                    // Adding this token would put it past the bounds.  Put the token on the next line.
+                    // Adding this token would put it past the bounds.
+                    // Put the token on the next line.
                     yield return line;
                     line = t;
                 }
