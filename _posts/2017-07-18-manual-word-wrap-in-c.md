@@ -14,7 +14,8 @@ One approach is to span a long message across multiple list items.  This is, for
 Here's an extension method that fits the bill:
 {% highlight csharp %}
 /// <summary>
-/// Brute-force word wrap.  Calls TextRenderer.MeasureText for each word in the text.  Words too long to wrap will not be broken.
+/// Brute-force word wrap.  Calls TextRenderer.MeasureText for each word in the text.
+/// Words too long to wrap will not be broken.
 /// </summary>
 /// <param name="text">Text to wrap</param>
 /// <param name="width">Width in pixels at which to wrap</param>
