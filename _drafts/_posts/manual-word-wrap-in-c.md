@@ -9,9 +9,9 @@ title: Manual Word Wrap in C#
 ---
 C#'s *ListView* control does not support word wrap, sadly.  The [ObjectListView](http://objectlistview.sourceforge.net/cs/index.html) wrapper control does, but each list item ends up same height.  In one project of mine, the occasional list item will have 4-5 lines while the majority fit easily on a single row.  How to maintain a pleasing UI but yet not hide long strings when they appear?
 
-One approach is to span a long message across multiple list items.  This is, for instance, the approach used by [TortoiseSVN for displaying long error messages](https://www.google.com/search?tbm=isch&q=tortoisesvn+error).  This means we have to calculate the points at which to wrap.
+One approach is to span a long message across multiple list items.  This is, for instance, the technique used by TortoiseSVN for displaying [long error messages in operation lists](https://www.google.com/search?tbm=isch&q=tortoisesvn+error).  This does means that we will have to wrap the text ourselves.
 
-Here's a good-enough approach:
+Here's an extension method that fits the bill:
 {% highlight csharp %}
 /// <summary>
 /// Brute-force word wrap.  Calls TextRenderer.MeasureText for each word in the text.  Words too long to wrap will not be broken.
