@@ -1,66 +1,67 @@
 ---
-title: Manual Word Wrap in C#
 comments: true
 date: 2017-07-18 21:48
-layout: post
 description: ''
-tags: []
+layout: post
+tags:
+- C#
+title: Manual Word Wrap in C#
 ---
-C#'s *ListView* control does not support word wrap, sadly.  The [ObjectListView](http://objectlistview.sourceforge.net/cs/index.html) wrapper control does, but each list item has to be the same height.
+C#'s *ListView* control does not support word wrap, sadly.  The [ObjectListView](http://objectlistview.sourceforge.net/cs/index.html) wrapper control does, but each list item ends up same height.  In one project of mine, the occasional list item will have 4-5 lines while the majority fit easily on a single row.  How to maintain a pleasing UI but yet not hide long strings when they appear?
 
-Another approach is to span a long message across multiple list items.  This is, for instance, the approach used by [TortoiseSVN for displaying long error messages](https://www.google.com/search?tbm=isch&q=tortoisesvn+error).  This means we have to calculate the points at which to wrap.
+One approach is to span a long message across multiple list items.  This is, for instance, the approach used by [TortoiseSVN for displaying long error messages](https://www.google.com/search?tbm=isch&q=tortoisesvn+error).  This means we have to calculate the points at which to wrap.
 
 Here's a good-enough approach:
 {% highlight csharp %}
-        /// <summary>
-        /// Brute-force word wrap.  Calls TextRenderer.MeasureText for each word in the text.  Words too long to wrap will not be broken.
-        /// </summary>
-        /// <param name="text">Text to wrap</param>
-        /// <param name="width">Width in pixels at which to wrap</param>
-        /// <param name="font">Font of the control which will display the wrapped text</param>
-        /// <returns>Wrapped lines.</returns>
-        public static IEnumerable<string> WrapStringToPixelWidth(this string text, int width, System.Drawing.Font font)
+/// <summary>
+/// Brute-force word wrap.  Calls TextRenderer.MeasureText for each word in the text.  Words too long to wrap will not be broken.
+/// </summary>
+/// <param name="text">Text to wrap</param>
+/// <param name="width">Width in pixels at which to wrap</param>
+/// <param name="font">Font of the control which will display the wrapped text</param>
+/// <returns>Wrapped lines.</returns>
+public static IEnumerable<string> WrapStringToPixelWidth(this string text, int width, System.Drawing.Font font)
+{
+    if (System.Windows.Forms.TextRenderer.MeasureText(text, font).Width <= width)
+    {
+        yield return text;
+    }
+    else
+    {
+
+        var tokens = text.Split(null); // null param == "split on whitespace"
+
+        string line = "";
+        foreach (var t in tokens)
         {
-            if (System.Windows.Forms.TextRenderer.MeasureText(text, font).Width <= width)
+            string candidate = (line + " " + t).TrimStart();
+            if (System.Windows.Forms.TextRenderer.MeasureText(candidate, font).Width < width)
             {
-                yield return text;
+                // Plenty of room for the token on this line
+                line = candidate;
             }
             else
             {
-
-                var tokens = text.Split(null); // null param == "split on whitespace"
-
-                string line = "";
-                foreach (var t in tokens)
+                // Line hasn't even started and already over max?  The token must be longer than the max length for a line.  Put the token on its own line.
+                if (line == "")
                 {
-                    string candidate = (line + " " + t).TrimStart();
-                    if (System.Windows.Forms.TextRenderer.MeasureText(candidate, font).Width < width)
-                    {
-                        // Plenty of room for the token on this line
-                        line = candidate;
-                    }
-                    else
-                    {
-                        // Line hasn't even started and already over max?  The token must be longer than the max length for a line.  Put the token on its own line.
-                        if (line == "")
-                        {
-                            yield return t;
-                        }
-                        else
-                        {
-                            // Adding this token would put it past the bounds.  Put the token on the next line.
-                            yield return line;
-                            line = t;
-                        }
-                    }
+                    yield return t;
                 }
-
-                if (line != "")
+                else
                 {
+                    // Adding this token would put it past the bounds.  Put the token on the next line.
                     yield return line;
+                    line = t;
                 }
             }
         }
+
+        if (line != "")
+        {
+            yield return line;
+        }
+    }
+}
 {% endhighlight %}
 
 Limitations:
