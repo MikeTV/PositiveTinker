@@ -20,9 +20,9 @@ layout: default
     </span>
     <p>
     {% if post.description.size > 0 %}
-          {{ post.description | markdownify | remove: '<p>' | remove: '</p>' }}<a href="{{ post.url }}">...</a>
+          {{ post.description | markdownify | remove: '<p>' | remove: '</p>' }}
       {% else %}
-          {{ post.excerpt | remove: '<p>' | remove: '</p>' }}<a href="{{ post.url }}">...</a>
+          {{ post.excerpt | remove: '<p>' | remove: '</p>' }}
     {% endif %}
     <!--&nbsp;<a href="{{ post.url }}">Continue&nbsp;&gt;&gt;</a>-->
     </p>
