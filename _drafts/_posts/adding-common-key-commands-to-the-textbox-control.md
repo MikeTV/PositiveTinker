@@ -14,7 +14,7 @@ CTRL+A is super simple:
 {% highlight csharp %}
 if (e.Control && e.KeyCode == Keys.A)
 {
-textbox.SelectAll();
+    textbox.SelectAll();
 }
 {% endhighlight %}
 
@@ -28,13 +28,8 @@ First attempt:
 {% highlight csharp %}
 if (e.Control && e.KeyCode == Keys.Back)
 {
-e.SuppressKeyPress = true;
-
-```
-SendKeys.Send("^+{LEFT}{BKSP}");
-
-```
-
+    e.SuppressKeyPress = true;
+    SendKeys.Send("^+{LEFT}{BKSP}");
 }
 {% endhighlight %}
 
