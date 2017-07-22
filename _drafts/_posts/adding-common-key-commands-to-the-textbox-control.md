@@ -16,7 +16,7 @@ if (e.Control && e.KeyCode == Keys.A)
 {
 textbox.SelectAll();
 }
-{% endhiglight %}
+{% endhighlight %}
 
 Control-Backspace is deceptively complex.  It appears to follow a somewhat convoluted set of rules: Erase back to the
 
