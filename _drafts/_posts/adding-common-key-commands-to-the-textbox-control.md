@@ -14,7 +14,7 @@ Control-A is super simple:
 {% highlight csharp %}
 if (e.Control && e.KeyCode == Keys.A)
 {
-textbox.SelectAll();
+    textbox.SelectAll();
 }
 {% endhighlight %}
 
