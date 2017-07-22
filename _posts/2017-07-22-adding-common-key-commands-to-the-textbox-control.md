@@ -24,7 +24,7 @@ CTRL+Backspace is deceptively complex.  It appears to follow a somewhat convolut
 
 After the third rewrite to handle a new branch in logic, I stopped trying to reimplement CTRL+Backspace from scratch.
 
-Approaching the problem from a different angle... what's something that's supported by Textbox that follows almost the same rules?  CTRL+Left (left arrow)!  To simulate a CTRL+Backspace, then, we need only highlight text using CTRL+Left, then delete it.
+Approaching the problem from a different angle... what's something that's supported by Textbox that follows almost the same rules?  CTRL+Left (left arrow)!  To simulate a CTRL+Backspace, then, we need only highlight text using CTRL+SHIFT+Left, then delete it.
 
 First attempt:
 {% highlight csharp %}
@@ -39,7 +39,7 @@ In the Send string, "^" means CTRL and "+" means SHIFT.  Basically, we're tellin
 
 ![](/uploads/2017/07/22/Textbox-Take1.gif)
 
-The first backspace works as expected, but the repitition afterwards only deletes a single character as a time.  This is because the "^" command character doesn't only press CTRL, it also *releases* it.  The textbox no longer recognizes that the user is holding down the control key.
+The first backspace works as expected, but the repetition afterward only deletes a single character at a time.  This is because the "^" command character doesn't only press CTRL, it also *releases* it.  The textbox no longer recognizes that the user is holding down the control key.
 
 Since the user is conveniently holding down the physical control key, we don't need to send that command:
 
