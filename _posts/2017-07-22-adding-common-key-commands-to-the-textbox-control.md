@@ -1,14 +1,13 @@
 ---
 comments: true
 date: 2017-07-22 16:14
-description: 'On today’s episode of “basic things .NET Windows Forms controls don’t
-  support natively” we look at the humble Textbox.  Two common key commands are mysteriously
-  missing: CTRL+A to select all text and CTRL+Backspace to delete the previous word.'
+description: ''
 layout: post
-tags: []
+tags:
+- C#
 title: Adding Common Key Commands to the Textbox Control
 ---
-On today's episode of "basic things .NET Windows Forms controls don't support natively" we look at the humble Textbox[^1].  Two common key commands are mysteriously missing: CTRL+A to select all text and CTRL+Backspace[^2] to delete the previous word.
+On today's episode of "basic things .NET Windows Forms controls don't support natively" we look at the humble Textbox[^1].  Two common key commands are mysteriously missing: CTRL+A to select all text and CTRL+Backspace[^2] to delete the previous word.
 
 Never fear, we can add both of these through a KeyDown event handler!  (<a href="#solution">Click here</a> to skip to the solution.)
 
@@ -137,6 +136,6 @@ Further Reading:
 ***
 Footnotes:
 
-[^1]: Yes, RichTextBox supports these key commands intrinsically, but is needlessly complex for many applications and comes with its own set of problems.
+[^1]: Yes, RichTextBox supports these key commands intrinsically, but is needlessly complex for many applications and comes with its own set of problems.
 
-[^2]: Actually, Control-Backspace *is* supported when [auto-complete is enabled](https://stackoverflow.com/a/30269663/3320402), but only if the textbox is not multiline. So close!
+[^2]: Actually, Control-Backspace *is* supported when [auto-complete is enabled](https://stackoverflow.com/a/30269663/3320402), but only if the textbox is not multiline. So close!
