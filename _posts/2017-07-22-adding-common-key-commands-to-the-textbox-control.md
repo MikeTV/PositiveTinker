@@ -128,7 +128,14 @@ public static void TextBox_KeyDown_CommonKeyCommands(object sender, KeyEventArgs
 }
 {% endhighlight %}
 
-<hr>
+***
+
+Further Reading:
+- [Stack Overflow: Winforms Textbox - Using Ctrl-Backspace to Delete Whole Word](https://stackoverflow.com/questions/1124639/winforms-textbox-using-ctrl-backspace-to-delete-whole-word/1197339#1197339)
+- [MSDN Blog "Old New Thing": Whose idea was it to make Ctrl+Backspace delete the previous word?](https://blogs.msdn.microsoft.com/oldnewthing/20071011-00/?p=24823)
+
+***
+Footnotes:
 
 [^1]: Yes, RichTextBox supports these key commands intrinsically, but is needlessly complex for many applications and comes with its own set of problems.
 
