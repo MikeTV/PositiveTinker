@@ -20,7 +20,7 @@ if (e.Control && e.KeyCode == Keys.A)
 
 CTRL+Backspace is deceptively complex.  It appears to follow a somewhat convoluted set of rules: Start removing characters to the left from the caret until reaching a breaking character (whitespace, punctuation, or separator).  Unless the character immediately preceding the carat is a breaking character, in which case remove breaking characters to the left until reaching a non-breaking character.  Unless the breaking character preceding the carat is a space or tab, in which case remove breaking characters to the left until reaching a non-breaking character, and then *continue* removing characters to the left until reaching a breaking character again.
 
-That's the point at which I stopped trying to reverse-engineer and reimplement CTRL+Backspace from scratch.
+After the third rewrite to handle a new branch in logic I stopped trying to reverse-engineer and reimplement CTRL+Backspace from scratch.
 
 Approaching the problem from a different angle, what's something that's supported by Textbox that follows almost the same rules?  CTRL+Left (left arrow)!  To simulate a CTRL+Backspace, then, we need only highlight text using CTRL+Left, then delete it.
 
