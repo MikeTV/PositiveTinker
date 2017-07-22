@@ -10,7 +10,7 @@ On today's episode of "basic things .NET form controls don't support natively" w
 
 Never fear, we can add both of these through a KeyDown event handler!
 
-CTRL+A is super simple:
+CTRL+A is super simple to implement:
 {% highlight csharp %}
 if (e.Control && e.KeyCode == Keys.A)
 {
