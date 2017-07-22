@@ -1,7 +1,9 @@
 ---
 comments: true
 date: 2017-07-22 16:14
-description: ''
+description: 'On today’s episode of “basic things .NET Windows Forms controls don’t
+  support natively” we look at the humble Textbox.  Two common key commands are mysteriously
+  missing: CTRL+A to select all text and CTRL+Backspace to delete the previous word.'
 layout: post
 tags:
 - C#
