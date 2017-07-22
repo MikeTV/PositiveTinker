@@ -8,7 +8,7 @@ tags: []
 ---
 On today's episode of "basic things .NET form controls don't support natively" we look at the humble Textbox[^1].  Two common key commands are mysteriously missing: CTRL+A to select all text and CTRL+Backspace[^2] to delete the previous word.
 
-Never fear, we can add both of these through a KeyDown event handler!
+Never fear, we can add both of these through a KeyDown event handler!  (<a href="#solution">Click here</a> to skip to the solution.)
 
 CTRL+A is super simple to implement:
 {% highlight csharp %}
@@ -39,7 +39,7 @@ In the Send string, "^" means CTRL and "+" means SHIFT.  Basically, we're tellin
 
 The first backspace works as expected, but the repitition afterwards only deletes a single character as a time.  This is because the "^" command character doesn't only press CTRL, it also *releases* it.  The textbox no longer recognizes that the user is holding down the control key.
 
-Since the user is actually holding down the control key, we don't need to send that command:
+Since the user is conveniently holding down the physical control key, we don't need to send that command:
 
 {% highlight csharp %}
 if (e.Control && e.KeyCode == Keys.Back)
@@ -79,7 +79,7 @@ if (e.Control && e.KeyCode == Keys.Back)
 
 ![](/uploads/2017/07/22/Textbox-Take4.gif)
 
-And there you have it!  Altogether, this is the code I'm now adding to every new TextBox:
+And there you have it!  Altogether, this is the code I'm now adding to every new TextBox: <a id="solution"></a>
 {% highlight csharp %}
 // On form init
 this.txtMyTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(TextBox_KeyDown_CommonKeyCommands);
