@@ -7,8 +7,9 @@ tags:
 - debugging
 title: Thunderbird Hangs When Saving Draft
 permalink: thunderbird-hangs-when-saving-draft
-date_created: 2017-07-04T22:24:14.0000000-05:00
+date_created: 2017-07-04T22:24:00.0000000-05:00
 ---
+   
    
    
    
@@ -18,7 +19,7 @@ date_created: 2017-07-04T22:24:14.0000000-05:00
 &nbsp;   
 Been having an issue lately with Thunderbird hanging, sometimes several times an hour. Always it’s while I’m writing an email. Always the latest (or nearly-latest) version of the email is saved in the Drafts folder, which led me to believe that it had something to do with the process of saving a draft.   
 &nbsp;   
-Following [Mozilla&#39;s testing guidelines][1], first test was using Thunderbird in Safe Mode. Same problem, so it wasn’t the fault of any extensions. Also excluded Windows Defender from scanning the Thunderbird profile folder, to no avail.   
+Following [Mozilla's testing guidelines][1], first test was using Thunderbird in Safe Mode. Same problem, so it wasn’t the fault of any extensions. Also excluded Windows Defender from scanning the Thunderbird profile folder, to no avail.   
 &nbsp;   
 Number 6 on the list mentions the Windows Indexer may be causing the problem, and the [linked Bugzilla entry][2] describes the problem as occurring while writing emails, sending emails, or saving drafts. Also, this is apparently particularly a problem in Windows 10. That checks all the boxes!   
 &nbsp;  
@@ -40,7 +41,7 @@ Problem solved!
 # Solution 2: Tap It with a Small Hammer.   
 &nbsp;   
 Ok, re-enabled indexing. Now to chain it to OneNote.  
-1. Start -&gt; Indexing Options    
+1. Start -> Indexing Options    
   
 2. Modify  
 3. Uncheck everything except the line starting with “oneindex”  
