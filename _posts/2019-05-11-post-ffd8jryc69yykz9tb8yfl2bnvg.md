@@ -1,13 +1,14 @@
 ---
 comments: true
-date: 2019-05-11T17:07:54.0000000-05:00
+date: 2019-05-11T17:30:52.0000000-05:00
 description: This should show as the description on the article listing
 layout: post
 title: Testing markdown conversion issues
 date_created: 2019-05-11T17:03:40.0000000-05:00
 ---
    
-Footnote [^1]   
+   
+Footnote[^1]   
 &nbsp;   
 &nbsp;   
 &nbsp;   
@@ -17,4 +18,10 @@ Footnote [^1]
 <i>HTML in the code block</i>
 {% endhighlight %}   
 &nbsp;   
-[^1]: Footnote destination
+Indented code block:   
+{% highlight html %}
+<i>HTML in the code block</i>
+{% endhighlight %}   
+&nbsp;   
+&nbsp;   
+[^1]: Footnote destination   

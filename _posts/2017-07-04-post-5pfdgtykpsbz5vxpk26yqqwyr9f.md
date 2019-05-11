@@ -59,7 +59,6 @@ After a short while, the number of “items indexed” displayed on the main scr
 &nbsp;   
 [![image003.png][6]][6]   
 &nbsp;   
-[![image004.png][7]][7]&nbsp;Has Thunderbird hung since then? This was 2017-07-12. Still running smoothly now that the Users directory is excluded? 2019-05-11 Yep.   
    
 
 [1]: https://wiki.mozilla.org/Thunderbird:Testing:Memory_Usage_Problems
@@ -68,4 +67,3 @@ After a short while, the number of “items indexed” displayed on the main scr
 [4]: /uploads/2017/07/04/image001.png "image001.png"
 [5]: /uploads/2017/07/04/image002.png "image002.png"
 [6]: /uploads/2017/07/04/image003.png "image003.png"
-[7]: /uploads/2017/07/04/image004.png "image004.png"
