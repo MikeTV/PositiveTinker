@@ -34,9 +34,10 @@ Approaching the problem from a different angle… what’s something that’s su
 &nbsp;   
 First attempt:   
 {% highlight csharp %}
-if (e.Control && e.KeyCode == Keys.A)  
+if (e.Control && e.KeyCode == Keys.Back)  
  {  
- textbox.SelectAll();  
+ e.SuppressKeyPress = true;  
+ SendKeys.Send("^+{LEFT}{BKSP}");  
  }
 {% endhighlight %}   
 &nbsp;   
@@ -48,36 +49,77 @@ The first backspace works as expected, but the repetition afterward only deletes
 Since the user is conveniently holding down the physical control key, we don’t need to send that command:   
 &nbsp;   
 {% highlight csharp %}
-if (e.Control && e.KeyCode == Keys.A)  
+if (e.Control && e.KeyCode == Keys.Back)  
  {  
- textbox.SelectAll();  
+ e.SuppressKeyPress = true;  
+ SendKeys.Send("+{LEFT}{BKSP}");  
  }
 {% endhighlight %}   
 [![image002.gif][2]][2]   
 &nbsp;   
 Hmm. The SendKeys command’s use of Backspace is itself triggering the KeyDown event, causing a near-infinite loop. Switching to using the Delete key instead:   
 {% highlight csharp %}
-if (e.Control && e.KeyCode == Keys.A)  
+if (e.Control && e.KeyCode == Keys.Back)  
  {  
- textbox.SelectAll();  
+ e.SuppressKeyPress = true;  
+ SendKeys.Send("+{LEFT}{DEL}");  
  }
 {% endhighlight %}   
 [![image003.gif][3]][3]   
 &nbsp;   
 Better! Once the preceding text is all gone, however, there’s nothing left to highlight. In the absence of highlighted text, Delete starts removing text to the right of the caret. One small condition will take care of this special case:   
 {% highlight csharp %}
-if (e.Control && e.KeyCode == Keys.A)  
+if (e.Control && e.KeyCode == Keys.Back)  
  {  
- textbox.SelectAll();  
+ e.SuppressKeyPress = true;   
+if (textbox.SelectionStart > 0)  
+ {  
+ SendKeys.Send("+{LEFT}{DEL}");  
+ }  
  }
 {% endhighlight %}   
 [![image004.gif][4]][4]   
 &nbsp;   
 And there you have it! Altogether, this is the code I’m now adding to every new TextBox:    
 {% highlight csharp %}
-if (e.Control && e.KeyCode == Keys.A)  
+// On form init  
+ this.txtMyTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(TextBox_KeyDown_CommonKeyCommands);   
+/// <summary>  
+ /// Adds support for the following TextBox key commands:  
+ /// CTRL+A  
+ /// CTRL+Backspace  
+ /// </summary>  
+ /// <param name="sender"></param>  
+ /// <param name="e"></param>  
+ public static void TextBox_KeyDown_CommonKeyCommands(object sender, KeyEventArgs e)  
+ {  
+ var textbox = (sender as TextBox);  
+ if (textbox == null)  
+ {  
+ return;  
+ }   
+// Add support for CTRL+A  
+ if (e.Control && e.KeyCode == Keys.A)  
  {  
  textbox.SelectAll();  
+ }   
+// Add support for CTRL+Backspace  
+ if (e.Control && e.KeyCode == Keys.Back)  
+ {  
+ e.SuppressKeyPress = true;   
+if (textbox.SelectionStart > 0)  
+ {  
+ /*  
+ * Piggyback off of the supported "CTRL + Left Cursor" feature.  
+ * Does not need to send {CTRL}, because the user is currently holding {CTRL}.  
+ * Uses {DEL} rather than {BKSP} in order to avoid creating an infinite loop.  
+ * NOTE: {DEL} has the side effect of deleting text to the right if the cursor is  
+ * already as far left as it can go, since no text will be selected by {LEFT}.  
+ * The .SelectionStart > 0 condition prevents this side effect.  
+ */  
+ SendKeys.Send("+{LEFT}{DEL}");  
+ }  
+ }  
  }
 {% endhighlight %}   
 &nbsp;   
@@ -88,9 +130,8 @@ Further Reading:
    
 &nbsp;   
 Footnotes:   
-[^1]: Yes, RichTextBox supports these key commands intrinsically, but is needlessly complex for many applications and comes with its own set of problems.&nbsp; [↩ ][7]   
-[^2]: Actually, Control-Backspace *is*  supported when [auto-complete is enabled ][8], but only if the textbox is not multiline. So close!&nbsp; [↩ ][9]   
-&nbsp;   
+[^1]: Yes, RichTextBox supports these key commands intrinsically, but is needlessly complex for many applications and comes with its own set of problems.   
+[^2]: Actually, Control-Backspace *is*  supported when [auto-complete is enabled][7], but only if the textbox is not multiline. So close!   
 
 [1]: /uploads/2017/07/22/Textbox-Take1.gif "image001.gif"
 [2]: /uploads/2017/07/22/Textbox-Take2.gif "image002.gif"
@@ -98,6 +139,4 @@ Footnotes:
 [4]: /uploads/2017/07/22/Textbox-Take4.gif "image004.gif"
 [5]: https://stackoverflow.com/questions/1124639/winforms-textbox-using-ctrl-backspace-to-delete-whole-word/1197339#1197339
 [6]: https://blogs.msdn.microsoft.com/oldnewthing/20071011-00/?p=24823
-[7]: https://positivetinker.com/adding-common-key-commands-to-the-textbox-control/#fnref:1
-[8]: https://stackoverflow.com/a/30269663/3320402
-[9]: https://positivetinker.com/adding-common-key-commands-to-the-textbox-control/#fnref:2
+[7]: https://stackoverflow.com/a/30269663/3320402
