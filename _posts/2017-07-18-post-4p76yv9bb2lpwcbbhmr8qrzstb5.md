@@ -1,7 +1,7 @@
 ---
 comments: true
 date: 2017-07-18T22:33:00.0000000-05:00
-description: C#’s *ListView* &nbsp;control does not support word wrap, sadly. Let's add it. The resulting extension method applies a generic pixel width to any string.
+description: C#’s *ListView* &nbsp;control does not support word wrap, sadly. Let&#39;s add it. The resulting extension method applies a generic pixel width to any string.
 layout: post
 tags:
 - C#
@@ -15,7 +15,7 @@ date_created: 2017-07-18T22:33:00.0000000-05:00
    
    
    
-&nbsp;   
+
 C#’s *ListView* &nbsp;control does not support word wrap, sadly. The [ObjectListView][1] wrapper control does, but each list item is rendered with same height. In one project of mine, the occasional list item will have 4-5 lines while the majority fit easily on a single row. How to maintain a pleasing UI but yet not hide long strings when they appear?   
 &nbsp;   
 One approach is to span a long message across multiple list items. This is, for instance, the technique used by TortoiseSVN for displaying [long error messages in operation lists][2]. This does means that we will have to wrap the text ourselves.   
@@ -23,38 +23,38 @@ One approach is to span a long message across multiple list items. This is, for 
 Here’s an extension method that fits the bill:   
 &nbsp;   
 {% highlight csharp %}
-/// <summary>  
+/// &lt;summary&gt;  
  /// Brute-force word wrap. Calls TextRenderer.MeasureText for each word in the text.  
  /// Words too long to wrap will not be broken.  
- /// </summary>  
- /// <param name="text">Text to wrap</param>  
- /// <param name="width">Width in pixels at which to wrap</param>  
- /// <param name="font">Font of the control which will display the wrapped text</param>  
- /// <returns>Multiple lines containint the wrapped text</returns>  
- public static IEnumerable<string> WrapStringToPixelWidth(this string text, int width, System.Drawing.Font font)  
+ /// &lt;/summary&gt;  
+ /// &lt;param name=&quot;text&quot;&gt;Text to wrap&lt;/param&gt;  
+ /// &lt;param name=&quot;width&quot;&gt;Width in pixels at which to wrap&lt;/param&gt;  
+ /// &lt;param name=&quot;font&quot;&gt;Font of the control which will display the wrapped text&lt;/param&gt;  
+ /// &lt;returns&gt;Multiple lines containint the wrapped text&lt;/returns&gt;  
+ public static IEnumerable&lt;string&gt; WrapStringToPixelWidth(this string text, int width, System.Drawing.Font font)  
  {  
- if (System.Windows.Forms.TextRenderer.MeasureText(text, font).Width <= width)  
+ if (System.Windows.Forms.TextRenderer.MeasureText(text, font).Width &lt;= width)  
  {  
  yield return text;  
  }  
  else  
  {  
- var tokens = text.Split(null); // null param == "split on whitespace"   
-string line = "";  
+ var tokens = text.Split(null); // null param == &quot;split on whitespace&quot;   
+string line = &quot;&quot;;  
  foreach (var t in tokens)  
  {  
- string candidate = (line + " " + t).TrimStart();  
- if (System.Windows.Forms.TextRenderer.MeasureText(candidate, font).Width < width)  
+ string candidate = (line + &quot; &quot; + t).TrimStart();  
+ if (System.Windows.Forms.TextRenderer.MeasureText(candidate, font).Width &lt; width)  
  {  
  // Plenty of room for the token on this line  
  line = candidate;  
  }  
  else  
  {  
- // Line hasn't even started and already over max?  
+ // Line hasn&#39;t even started and already over max?  
  // The token must be longer than the max length for a line.  
  // Put the token on its own line.  
- if (line == "")  
+ if (line == &quot;&quot;)  
  {  
  yield return t;  
  }  
@@ -67,7 +67,7 @@ string line = "";
  }  
  }  
  }   
-if (line != "")  
+if (line != &quot;&quot;)  
  {  
  yield return line;  
  }  
@@ -83,4 +83,4 @@ Limitations:
 &nbsp;   
 
 [1]: http://objectlistview.sourceforge.net/cs/index.html
-[2]: https://duckduckgo.com/?q=tortoisesvn+error&amp;t=hj&amp;iax=images&amp;ia=images
+[2]: https://duckduckgo.com/?q=tortoisesvn+error&amp;amp;t=hj&amp;amp;iax=images&amp;amp;ia=images
