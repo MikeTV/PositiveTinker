@@ -1,6 +1,7 @@
 ---
 comments: true
 date: 2017-07-22T18:51:00.0000000-05:00
+description: 'Once in a while you get blindsided by a feature that* seems*  ubiquitous, but is somehow missing from standard libraries. Two of those are keyboard shortcuts found on the the WinForms Textbox: CTRL+A (to select all text) and CTRL+Backspace (to delete the previous word). Never fear, we can add both of these through a KeyDown event handler!'
 layout: post
 tags:
 - C#
@@ -13,12 +14,13 @@ date_created: 2017-07-22T18:51:00.0000000-05:00
    
    
    
+   
 &nbsp;   
 Once in a while you get blindsided by a feature that* seems*  ubiquitous, but is somehow missing from standard libraries. Two of those are keyboard shortcuts found on the the WinForms Textbox[^1]: CTRL+A (to select all text) and CTRL+Backspace[^2] (to delete the previous word). Never fear, we can add both of these through a KeyDown event handler!   
 &nbsp;   
 CTRL+A is super simple to implement:   
 {% highlight csharp %}
-if (e.Control &amp;&amp; e.KeyCode == Keys.A)  
+if (e.Control && e.KeyCode == Keys.A)  
  {  
  textbox.SelectAll();  
  }
@@ -32,7 +34,7 @@ Approaching the problem from a different angle… what’s something that’s su
 &nbsp;   
 First attempt:   
 {% highlight csharp %}
-if (e.Control &amp;&amp; e.KeyCode == Keys.A)  
+if (e.Control && e.KeyCode == Keys.A)  
  {  
  textbox.SelectAll();  
  }
@@ -46,7 +48,7 @@ The first backspace works as expected, but the repetition afterward only deletes
 Since the user is conveniently holding down the physical control key, we don’t need to send that command:   
 &nbsp;   
 {% highlight csharp %}
-if (e.Control &amp;&amp; e.KeyCode == Keys.A)  
+if (e.Control && e.KeyCode == Keys.A)  
  {  
  textbox.SelectAll();  
  }
@@ -55,7 +57,7 @@ if (e.Control &amp;&amp; e.KeyCode == Keys.A)
 &nbsp;   
 Hmm. The SendKeys command’s use of Backspace is itself triggering the KeyDown event, causing a near-infinite loop. Switching to using the Delete key instead:   
 {% highlight csharp %}
-if (e.Control &amp;&amp; e.KeyCode == Keys.A)  
+if (e.Control && e.KeyCode == Keys.A)  
  {  
  textbox.SelectAll();  
  }
@@ -64,7 +66,7 @@ if (e.Control &amp;&amp; e.KeyCode == Keys.A)
 &nbsp;   
 Better! Once the preceding text is all gone, however, there’s nothing left to highlight. In the absence of highlighted text, Delete starts removing text to the right of the caret. One small condition will take care of this special case:   
 {% highlight csharp %}
-if (e.Control &amp;&amp; e.KeyCode == Keys.A)  
+if (e.Control && e.KeyCode == Keys.A)  
  {  
  textbox.SelectAll();  
  }
@@ -73,7 +75,7 @@ if (e.Control &amp;&amp; e.KeyCode == Keys.A)
 &nbsp;   
 And there you have it! Altogether, this is the code I’m now adding to every new TextBox:    
 {% highlight csharp %}
-if (e.Control &amp;&amp; e.KeyCode == Keys.A)  
+if (e.Control && e.KeyCode == Keys.A)  
  {  
  textbox.SelectAll();  
  }
