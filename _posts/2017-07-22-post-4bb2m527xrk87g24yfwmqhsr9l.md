@@ -42,6 +42,7 @@ if (e.Control && e.KeyCode == Keys.Back)
 ```  
 
 In the Send string, “^” means CTRL and “+” means SHIFT. Basically, we’re telling the textbox to simulate CTRL+SHIFT+Left, then Backspace. This looks decent at first blush, but if the user *holds down*  CTRL+Backspace…  
+
 [![image001.gif][1]][1]  
 
 The first backspace works as expected, but the repetition afterward only deletes a single character at a time. This is because the “^” command character doesn’t only press CTRL, it also *releases*  it. The textbox no longer recognizes that the user is holding down the control key.  
