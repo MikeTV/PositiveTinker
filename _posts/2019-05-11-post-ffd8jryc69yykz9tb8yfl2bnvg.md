@@ -6,7 +6,9 @@ layout: post
 title: Testing markdown conversion issues
 date_created: 2019-05-11T17:03:40.0000000-05:00
 ---
-   
+
+
+[^my-named-footnote] Result
 
 ----
 
@@ -15,6 +17,7 @@ Footnote[^1]
 &nbsp;   
 Manual footnote in editor[^2]
 &nbsp;   
+Named footnote [^my-named-footnote]
 <i>Html in the page</i>   
 &nbsp;   
 {% highlight html %}
@@ -34,6 +37,8 @@ if (System.Windows.Forms.TextRenderer.MeasureText(text, font).Width <= width)
 &nbsp;   
 
 ***
+
+
 
 [^1]: Footnote destination   
 [^2]: Down
