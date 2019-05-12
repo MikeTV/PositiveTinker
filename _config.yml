@@ -2,6 +2,10 @@
 markdown:         kramdown
 highlighter:      rouge
 
+# configure kramdown
+kramdown:
+  parse_block_html: true
+
 # Permalinks
 permalink:        /:title/
 
