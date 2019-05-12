@@ -11,6 +11,7 @@ date_created: 2019-05-11T17:03:40.0000000-05:00
 Footnote[^1]   
 &nbsp;   
 &nbsp;   
+Manual footnote in editor[^2]
 &nbsp;   
 <i>Html in the page</i>   
 &nbsp;   
@@ -27,3 +28,4 @@ if (System.Windows.Forms.TextRenderer.MeasureText(text, font).Width <= width)
 {% endhighlight %}   
 &nbsp;   
 [^1]: Footnote destination   
+[^2]: Down
