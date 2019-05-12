@@ -1,6 +1,6 @@
 ---
 comments: true
-date: 2019-05-12T16:12:50.0000000-05:00
+date: 2019-05-12T16:29:00.0000000-05:00
 description: This should show as the description on the article listing
 layout: post
 title: Testing markdown conversion issues
@@ -25,23 +25,30 @@ And above text
 Footnote[^2]   
 
 {% highlight html %}
-<i>HTML in the code block</i>
+<i>HTML in   the code block</i>
 {% endhighlight %}   
 
 Indented code block:   
-```     
 {% highlight csharp %}
 if   (System.Windows.Forms.TextRenderer.MeasureText(text, font).Width <=   width)  
         {  
             yield return text;  
         }
-{% endhighlight %}     
+{% endhighlight %}   
+
+Built-in syntax highlighting?   
+
+```csharp     
+    if   (System.Windows.Forms.TextRenderer.MeasureText(text, font).Width <=   width)  
+        {  
+            yield return text;  
+        }     
 ```   
 
 **Test bold**    
 *Test italic*    
-__Test underline__    
-__***Test all 3__***    
+<u>Test underline</u>    
+***<u>Test all 3</u>***    
 
 [^1]: Footnote destination   
 
