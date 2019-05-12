@@ -99,18 +99,18 @@ public static void TextBox_KeyDown_CommonKeyCommands(object sender, KeyEventArgs
     {  
         return;  
     }  
-// Add support for CTRL+A  
+    // Add support for CTRL+A  
     if (e.Control && e.KeyCode == Keys.A)  
     {  
         textbox.SelectAll();  
     }  
-// Add support for CTRL+Backspace  
+    // Add support for CTRL+Backspace  
     if (e.Control && e.KeyCode == Keys.Back)  
     {  
         e.SuppressKeyPress = true;  
-if (textbox.SelectionStart > 0)  
+        if (textbox.SelectionStart > 0)  
         {  
-            /*  
+           /*  
             * Piggyback off of the supported "CTRL + Left Cursor" feature.  
             * Does not need to send {CTRL}, because the user is currently holding {CTRL}.  
             * Uses {DEL} rather than {BKSP} in order to avoid creating an infinite loop.  

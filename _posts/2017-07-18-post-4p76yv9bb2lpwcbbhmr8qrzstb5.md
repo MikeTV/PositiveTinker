@@ -67,7 +67,8 @@ public static IEnumerable<string> WrapStringToPixelWidth(this string text, int w
                 }  
             }  
         }  
-if (line != "")  
+  
+        if (line != "")  
         {  
             yield return line;  
         }  
