@@ -1,6 +1,6 @@
 ---
 comments: true
-date: 2019-05-11T17:00:53.0000000-05:00
+date: 2019-05-12T15:19:09.0000000-05:00
 description: A simple, inexpensive growth medium for Spirulina with easy-to-find ingredients.
 layout: post
 tags:
@@ -28,6 +28,7 @@ Each ingredient is easily found on Amazon, and often in natural food, bulk food,
 So how well does it work? Great! My 20L of algae have thrived in it over the past year. Haven't run any rigorous controlled trials, but in a side-by-side run with 2L of the Five-Ingredient Growth Medium and Zarrouk's Growth Medium the culture's population density appeared to increase at the same rate.   
 &nbsp;   
 ***   
+&nbsp;   
 Footnotes:   
 &nbsp;   
 [^1]: Adjust the amount depending on its concentration. For instance, with a 6% chelated iron solution only add (0.1ml * 3.5%) / 6% = 0.0583ml per liter of water.   
