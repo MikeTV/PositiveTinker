@@ -7,7 +7,8 @@ title: Testing markdown conversion issues
 date_created: 2019-05-11T17:03:40.0000000-05:00
 ---
    
-   
+
+----
 Footnote[^1]   
 &nbsp;   
 &nbsp;   
@@ -19,6 +20,7 @@ Manual footnote in editor[^2]
 <i>HTML in the code block</i>
 {% endhighlight %}   
 &nbsp;   
+****
 Indented code block:   
 {% highlight csharp %}
 if (System.Windows.Forms.TextRenderer.MeasureText(text, font).Width <= width)  
@@ -27,5 +29,6 @@ if (System.Windows.Forms.TextRenderer.MeasureText(text, font).Width <= width)
  }
 {% endhighlight %}   
 &nbsp;   
+***
 [^1]: Footnote destination   
 [^2]: Down
