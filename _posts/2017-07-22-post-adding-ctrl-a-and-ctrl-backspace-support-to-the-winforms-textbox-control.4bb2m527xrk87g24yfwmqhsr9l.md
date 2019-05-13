@@ -21,9 +21,9 @@ Once in a while you get blindsided by a feature that *seems*  ubiquitous, but is
 CTRL+A is super simple to implement:   
 ```csharp    
 if (e.Control && e.KeyCode == Keys.A)  
- {  
-     textbox.SelectAll();  
- }    
+{  
+    textbox.SelectAll();  
+}    
 ```   
 
 CTRL+Backspace behavior is deceptively complex. Implementations appear to follow a particular set of rules: Start removing characters to the left from the caret until reaching a breaking character (whitespace, punctuation, or separator). Unless the character immediately preceding the carat is a breaking character, in which case remove breaking characters to the left until reaching a non-breaking character. Unless the breaking character preceding the carat is a space or tab, in which case remove breaking characters to the left until reaching a non-breaking character, and then *continue*  removing characters to the left until reaching a breaking character again.   
@@ -35,10 +35,10 @@ Approaching the problem from a different angle… what’s something that’s su
 First attempt:   
 ```csharp    
 if (e.Control && e.KeyCode == Keys.Back)  
- {  
-     e.SuppressKeyPress = true;  
-     SendKeys.Send("^+{LEFT}{BKSP}");  
- }    
+{  
+    e.SuppressKeyPress = true;  
+    SendKeys.Send("^+{LEFT}{BKSP}");  
+}    
 ```   
 
 In the Send string, “^” means CTRL and “+” means SHIFT. Basically, we’re telling the textbox to simulate CTRL+SHIFT+Left, then Backspace. This looks decent at first blush, but if the user *holds down*  CTRL+Backspace…    
@@ -51,84 +51,84 @@ Since the user is conveniently holding down the physical control key, we don’t
 
 ```csharp    
 if (e.Control && e.KeyCode == Keys.Back)  
- {  
-     e.SuppressKeyPress = true;  
-     SendKeys.Send("+{LEFT}{BKSP}");  
- }    
+{  
+    e.SuppressKeyPress = true;  
+    SendKeys.Send("+{LEFT}{BKSP}");  
+}    
 ```   
 [![image002.gif][2]][2]   
 
 Hmm. The SendKeys command’s use of Backspace is itself triggering the KeyDown event, causing a near-infinite loop. Switching to using the Delete key instead:   
 ```csharp    
 if (e.Control && e.KeyCode == Keys.Back)  
- {  
-     e.SuppressKeyPress = true;  
-     SendKeys.Send("+{LEFT}{DEL}");  
- }    
+{  
+    e.SuppressKeyPress = true;  
+    SendKeys.Send("+{LEFT}{DEL}");  
+}    
 ```   
 [![image003.gif][3]][3]   
 
 Better! Once the preceding text is all gone, however, there’s nothing left to highlight. In the absence of highlighted text, Delete starts removing text to the right of the caret. One small condition will take care of this special case:   
 ```csharp    
 if (e.Control && e.KeyCode == Keys.Back)  
- {  
-     e.SuppressKeyPress = true;    
+{  
+    e.SuppressKeyPress = true;    
 if (textbox.SelectionStart > 0)  
-     {  
-         SendKeys.Send("+{LEFT}{DEL}");  
-     }  
- }    
+    {  
+        SendKeys.Send("+{LEFT}{DEL}");  
+    }  
+}    
 ```   
 [![image004.gif][4]][4]   
 
 And there you have it! Altogether, this is the code I’m now adding to every new TextBox:    
 ```csharp    
 // On form init  
- this.txtMyTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(TextBox_KeyDown_CommonKeyCommands);    
+this.txtMyTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(TextBox_KeyDown_CommonKeyCommands);    
 /// <summary>  
- /// Adds support for the following TextBox key commands:  
- /// CTRL+A  
- /// CTRL+Backspace  
- /// </summary>  
- /// <param name="sender"></param>  
- /// <param name="e"></param>  
- public static void TextBox_KeyDown_CommonKeyCommands(object sender, KeyEventArgs e)  
- {  
-     var textbox = (sender as TextBox);  
-     if (textbox == null)  
-     {  
-         return;  
-     }    
-    // Add support for CTRL+A  
-     if (e.Control && e.KeyCode == Keys.A)  
-     {  
-         textbox.SelectAll();  
-     }    
-    // Add support for CTRL+Backspace  
-     if (e.Control && e.KeyCode == Keys.Back)  
-     {  
-         e.SuppressKeyPress = true;    
-        if (textbox.SelectionStart > 0)  
-         {  
-            /*  
-             * Piggyback off of the supported "CTRL + Left Cursor" feature.  
-             * Does not need to send {CTRL}, because the user is currently holding {CTRL}.  
-             * Uses {DEL} rather than {BKSP} in order to avoid creating an infinite loop.  
-             * NOTE: {DEL} has the side effect of deleting text to the right if the cursor is  
-             *       already as far left as it can go, since no text will be selected by {LEFT}.  
-             *       The .SelectionStart > 0 condition prevents this side effect.  
-             */  
-             SendKeys.Send("+{LEFT}{DEL}");  
-         }  
-     }  
- }    
+/// Adds support for the following TextBox key commands:  
+/// CTRL+A  
+/// CTRL+Backspace  
+/// </summary>  
+/// <param name="sender"></param>  
+/// <param name="e"></param>  
+public static void TextBox_KeyDown_CommonKeyCommands(object sender, KeyEventArgs e)  
+{  
+    var textbox = (sender as TextBox);  
+    if (textbox == null)  
+    {  
+        return;  
+    }    
+   // Add support for CTRL+A  
+    if (e.Control && e.KeyCode == Keys.A)  
+    {  
+        textbox.SelectAll();  
+    }    
+   // Add support for CTRL+Backspace  
+    if (e.Control && e.KeyCode == Keys.Back)  
+    {  
+        e.SuppressKeyPress = true;    
+       if (textbox.SelectionStart > 0)  
+        {  
+           /*  
+            * Piggyback off of the supported "CTRL + Left Cursor" feature.  
+            * Does not need to send {CTRL}, because the user is currently holding {CTRL}.  
+            * Uses {DEL} rather than {BKSP} in order to avoid creating an infinite loop.  
+            * NOTE: {DEL} has the side effect of deleting text to the right if the cursor is  
+            *       already as far left as it can go, since no text will be selected by {LEFT}.  
+            *       The .SelectionStart > 0 condition prevents this side effect.  
+            */  
+            SendKeys.Send("+{LEFT}{DEL}");  
+        }  
+    }  
+}    
 ```   
 
 Further Reading:   
- 
+
 * [Stack Overflow: Winforms Textbox - Using Ctrl-Backspace to Delete Whole Word ][5] 
 * [MSDN Blog “Old New Thing”: Whose idea was it to make Ctrl+Backspace delete the previous word? ][6]   
-   
+  
 
 ****   
 

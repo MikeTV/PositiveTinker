@@ -30,7 +30,7 @@ Since I use [Everything][3] for file search almost exclusively, and Indexing pro
 2. Right click “Windows Search”, click “Properties”  
 3. Click “Stop”  
 4. Set “Startup Type” to “Disabled”    
-   
+  
 
 [![image001.png][4]][4]   
 
@@ -42,12 +42,12 @@ Problem solved!
 
 Ok, re-enabled indexing. Now to chain it to OneNote.  
 1. Start -> Indexing Options    
-  
+ 
 2. Modify  
 3. Uncheck everything except the line starting with “oneindex”  
 4. Click OK  
 5. Repeat steps 2-4 until everything is *actually* checked and the main window shows zero included locations    
-   
+  
 
 Assuming that “oneindex16” is the location for OneNote/OneDrive, since it is prefixed with the word “one”.   
 

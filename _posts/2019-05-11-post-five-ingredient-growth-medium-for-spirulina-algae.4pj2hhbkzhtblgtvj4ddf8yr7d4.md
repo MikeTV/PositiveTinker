@@ -23,7 +23,7 @@ Mix the following into a liter of water:
 * 1g Sea salt  
 * 0.1g DAP (diammonium phosphate)  
 * 0.1mL[^1] Liquid chelated iron sulfate with 3.5% chelated iron content    
-   
+  
 
 Took a while to find an algae growth medium that didn't either list 18 chemical compounds or contain ingredients like Single Super Phosphate that are difficult to find in the United States. Finally ran across this one mentioned off-hand by Dr. Cath of Spirulina Academy, [buried deep in a comment thread][1] under one of her articles[^2].    
 
