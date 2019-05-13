@@ -6,7 +6,7 @@ layout: post
 tags:
 - C#
 title: Adding CTRL-A and CTRL-Backspace Support to the WinForms Textbox Control
-permalink: adding-common-key-commands-to-the-textbox-control
+permalink: adding-ctrl-a-and-ctrl-backspace-support-to-the-winforms-textbox-control
 date_created: 2017-07-22T18:51:00.0000000-05:00
 ---
   
@@ -16,7 +16,7 @@ date_created: 2017-07-22T18:51:00.0000000-05:00
   
   
 
-Once in a while you get blindsided by a feature that* seems* ubiquitous, but is somehow missing from standard libraries. Two of those are keyboard shortcuts found on the the WinForms Textbox[^1]: CTRL+A (to select all text) and CTRL+Backspace[^2] (to delete the previous word). Never fear, we can add both of these through a KeyDown event handler!  
+Once in a while you get blindsided by a feature that*seems* ubiquitous, but is somehow missing from standard libraries. Two of those are keyboard shortcuts found on the the WinForms Textbox[^1]: CTRL+A (to select all text) and CTRL+Backspace[^2] (to delete the previous word). Never fear, we can add both of these through a KeyDown event handler!  
 
 CTRL+A is super simple to implement:  
 ```csharp  
