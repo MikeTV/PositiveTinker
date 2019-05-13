@@ -59,7 +59,7 @@ After a short while, the number of “items indexed” displayed on the main scr
 
 [![image003.png][6]][6]   
 
-  
+   
 
 [1]: https://wiki.mozilla.org/Thunderbird:Testing:Memory_Usage_Problems
 [2]: https://bugzilla.mozilla.org/show_bug.cgi?id=1262517
